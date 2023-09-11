@@ -69,7 +69,13 @@ const main = async () => {
             const file = files[i];
             const basename = path.basename(file);
             const filename = path.parse(basename).name;
-            const savePath = path.join(downloadDir, `${filename}.mp4`);
+            let ext='mp4';
+
+            if (filename.indexOf('-a1') !== -1) {
+                ext = 'aac';
+            }
+
+            const savePath = path.join(downloadDir, `${filename}.${ext}`);
 
             await processFile(file, savePath);
 
